@@ -21,7 +21,16 @@ object Main {
   /**
    * Exercise 2
    */
-    def balance(chars: List[Char]): Boolean = ???
+    def balance(chars: List[Char]): Boolean = {
+      def loop(xs: List[Char], count: Int): Boolean =
+        if (xs.isEmpty) count == 0
+        else if (count < 0) false
+        else if (xs.head == '(') loop(xs.tail, count + 1)
+        else if (xs.head == ')') loop(xs.tail, count - 1)
+        else loop(xs.tail, count)
+
+      loop(chars, 0)
+    }
   
   /**
    * Exercise 3
